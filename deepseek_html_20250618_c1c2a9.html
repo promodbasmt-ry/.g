@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Moving Circle (Boy)</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: #f0f8ff;
+        }
+        
+        #boy {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background-color: #4682b4;
+            border-radius: 50%;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            transition: left 0.1s linear;
+        }
+        
+        #boy::after {
+            content: "";
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: white;
+            border-radius: 50%;
+            top: 15px;
+            left: 15px;
+        }
+        
+        #ground {
+            position: absolute;
+            width: 100%;
+            height: 20px;
+            background-color: #8b4513;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="boy"></div>
+    <div id="ground"></div>
+    
+    <script>
+        const boy = document.getElementById('boy');
+        let position = 0;
+        const moveSpeed = 2;
+        
+        function moveBoy() {
+            position += moveSpeed;
+            if (position > window.innerWidth) {
+                position = -60; // Reset to left when goes off right
+            }
+            boy.style.left = position + 'px';
+            requestAnimationFrame(moveBoy);
+        }
+        
+        moveBoy();
+    </script>
+</body>
+</html>
